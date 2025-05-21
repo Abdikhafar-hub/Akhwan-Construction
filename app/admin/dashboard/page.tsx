@@ -9,13 +9,23 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Progress } from "@/components/ui/progress"
+import { useAuth } from "@/lib/auth"
+import { useRouter } from "next/navigation"
 
 export default function DashboardPage() {
+  const { logout } = useAuth();
+  const router = useRouter();
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
-        <p className="text-muted-foreground">Overview of Akhwan platform metrics and activity</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
+          <p className="text-muted-foreground">Overview of Akhwan platform metrics and activity</p>
+        </div>
+        <Button variant="outline" size="sm" onClick={() => { logout(); router.push('/login'); }}>
+          Log Out
+        </Button>
       </div>
 
       <Tabs defaultValue="overview">

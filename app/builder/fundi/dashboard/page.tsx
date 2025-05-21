@@ -43,8 +43,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox"
 import { useToast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
+import { useAuth } from "@/lib/auth"
+import { useRouter } from "next/navigation"
 
 export default function FundiDashboardPage() {
+  const { logout } = useAuth();
+  const router = useRouter();
   // State for modals
   const [bidFormOpen, setBidFormOpen] = useState(false)
   const [jobDetailsOpen, setJobDetailsOpen] = useState(false)
@@ -167,35 +171,36 @@ export default function FundiDashboardPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <header className="bg-background border-b sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
-                <span className="font-bold">J</span>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
+              <span className="font-bold">J</span>
+            </div>
+            <div>
+              <h1 className="text-xl font-bold">Akhwan</h1>
+              <p className="text-sm text-muted-foreground">Fundi Dashboard</p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+            </Button>
+            <Button variant="ghost" size="icon">
+              <MessageSquare className="h-5 w-5" />
+            </Button>
+            <div className="flex items-center space-x-2">
+              <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
+                <Hammer className="h-4 w-4 text-blue-600" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Akhwan</h1>
-                <p className="text-sm text-muted-foreground">Fundi Dashboard</p>
+                <p className="text-sm font-medium">Bob Fundi</p>
+                <p className="text-xs text-muted-foreground">Plumbing Specialist</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
-              </Button>
-              <Button variant="ghost" size="icon">
-                <MessageSquare className="h-5 w-5" />
-              </Button>
-              <div className="flex items-center space-x-2">
-                <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
-                  <Hammer className="h-4 w-4 text-blue-600" />
-                </div>
-                <div>
-                  <p className="text-sm font-medium">Bob Fundi</p>
-                  <p className="text-xs text-muted-foreground">Plumbing Specialist</p>
-                </div>
-              </div>
-            </div>
+            <Button variant="outline" size="sm" onClick={() => { logout(); router.push('/login'); }}>
+              Log Out
+            </Button>
           </div>
         </div>
       </header>
