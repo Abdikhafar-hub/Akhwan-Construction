@@ -70,32 +70,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     // Role-based access control
-    if (pathname.startsWith("/admin") && user.role !== "admin") {
+    if (pathname.startsWith("/admin") && (!user || user.role !== "admin")) {
       router.push("/login")
       return
     }
 
-    if (pathname.startsWith("/customer") && user.role !== "customer") {
+    if (pathname.startsWith("/customer") && (!user || user.role !== "customer")) {
       router.push("/login")
       return
     }
 
-    if (pathname.startsWith("/builder/fundi") && user.role !== "fundi") {
+    if (pathname.startsWith("/builder/fundi") && (!user || user.role !== "fundi")) {
       router.push("/login")
       return
     }
 
-    if (pathname.startsWith("/builder/contractor") && user.role !== "contractor") {
+    if (pathname.startsWith("/builder/contractor") && (!user || user.role !== "contractor")) {
       router.push("/login")
       return
     }
 
-    if (pathname.startsWith("/builder/professional") && user.role !== "professional") {
+    if (pathname.startsWith("/builder/professional") && (!user || user.role !== "professional")) {
       router.push("/login")
       return
     }
 
-    if (pathname.startsWith("/builder/hardware") && user.role !== "hardware") {
+    if (pathname.startsWith("/builder/hardware") && (!user || user.role !== "hardware")) {
       router.push("/login")
       return
     }

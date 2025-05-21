@@ -1,4 +1,3 @@
-// Add client directive and state management
 "use client"
 
 import { useState } from "react"

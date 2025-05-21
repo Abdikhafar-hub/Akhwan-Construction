@@ -46,6 +46,26 @@ import { Toaster } from "@/components/ui/toaster"
 import { useAuth } from "@/lib/auth"
 import { useRouter } from "next/navigation"
 
+type Job = {
+  title: string;
+  location: string;
+  budget: string;
+  posted: string;
+  deadline: string;
+  description: string;
+  skills: string[];
+};
+
+type Project = {
+  title: string;
+  customer: string;
+  location: string;
+  amount: string;
+  progress: number;
+  dueDate: string;
+  milestones: { name: string; completed: boolean }[];
+};
+
 export default function FundiDashboardPage() {
   const { logout } = useAuth();
   const router = useRouter();
@@ -63,16 +83,16 @@ export default function FundiDashboardPage() {
   const [viewAllReviewsOpen, setViewAllReviewsOpen] = useState(false)
   
   // State for selected items
-  const [selectedJob, setSelectedJob] = useState(null)
-  const [selectedProject, setSelectedProject] = useState(null)
-  const [selectedMilestone, setSelectedMilestone] = useState(null)
-  const [selectedClient, setSelectedClient] = useState(null)
+  const [selectedJob, setSelectedJob] = useState<Job | null>(null)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedMilestone, setSelectedMilestone] = useState<string | null>(null)
+  const [selectedClient, setSelectedClient] = useState<string | null>(null)
   
   // Toast hook
   const { toast } = useToast()
 
   // Handle bid submission
-  const handleBidSubmit = (e) => {
+  const handleBidSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "Bid Submitted",
@@ -82,7 +102,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle custom bid creation
-  const handleCustomBidSubmit = (e) => {
+  const handleCustomBidSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "Custom Bid Created",
@@ -92,7 +112,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle message sending
-  const handleMessageSend = (e) => {
+  const handleMessageSend = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "Message Sent",
@@ -102,7 +122,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle progress update
-  const handleProgressUpdate = (e) => {
+  const handleProgressUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "Progress Updated",
@@ -112,7 +132,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle milestone completion
-  const handleMilestoneComplete = (milestone) => {
+  const handleMilestoneComplete = (milestone: string) => {
     toast({
       title: "Milestone Completed",
       description: `${milestone} has been marked as complete.`,
@@ -120,7 +140,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle withdrawal request
-  const handleWithdrawalRequest = (e) => {
+  const handleWithdrawalRequest = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "Withdrawal Requested",
@@ -139,7 +159,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle profile update
-  const handleProfileUpdate = (e) => {
+  const handleProfileUpdate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "Profile Updated",
@@ -149,7 +169,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle certification upload
-  const handleCertificationUpload = (e) => {
+  const handleCertificationUpload = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "Certification Added",
@@ -159,7 +179,7 @@ export default function FundiDashboardPage() {
   }
 
   // Handle license upload
-  const handleLicenseUpload = (e) => {
+  const handleLicenseUpload = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     toast({
       title: "License Added",
@@ -335,7 +355,7 @@ export default function FundiDashboardPage() {
                           </div>
                           <p className="text-sm mb-3">{job.description}</p>
                           <div className="flex flex-wrap gap-2 mb-3">
-                            {job.skills.map((skill, i) => (
+                            {job.skills.map((skill: string, i: number) => (
                               <Badge key={i} variant="secondary">
                                 {skill}
                               </Badge>
@@ -543,8 +563,8 @@ export default function FundiDashboardPage() {
 
                       <div className="space-y-2">
                         <h4 className="text-sm font-medium">Milestones</h4>
-                        {project.milestones.map((milestone, i) => (
-                          <div key={i} className="flex items-center justify-between text-sm">
+                        {project.milestones.map((milestone: { name: string; completed: boolean }, index: number) => (
+                          <div key={index} className="flex items-center justify-between text-sm">
                             <div className="flex items-center">
                               {milestone.completed ? (
                                 <CheckCircle className="h-4 w-4 mr-2 text-green-500" />
@@ -872,7 +892,7 @@ export default function FundiDashboardPage() {
                           "Leak Detection",
                           "Water Heaters",
                           "Drainage",
-                        ].map((skill, i) => (
+                        ].map((skill: string, i: number) => (
                           <Badge key={i} variant="secondary">
                             {skill}
                           </Badge>
@@ -1194,7 +1214,7 @@ export default function FundiDashboardPage() {
                   <div className="mb-3">
                     <h4 className="text-sm font-medium mb-1">Required Skills</h4>
                     <div className="flex flex-wrap gap-2">
-                      {selectedJob.skills.map((skill, i) => (
+                      {selectedJob.skills.map((skill: string, i: number) => (
                         <Badge key={i} variant="secondary">
                           {skill}
                         </Badge>
@@ -1419,7 +1439,7 @@ export default function FundiDashboardPage() {
                 <Label>Milestones</Label>
                 <div className="space-y-2 border rounded-lg p-3">
                   {selectedProject ? (
-                    selectedProject.milestones.map((milestone, index) => (
+                    selectedProject.milestones.map((milestone: { name: string; completed: boolean }, index: number) => (
                       <div key={index} className="flex items-center justify-between">
                         <div className="flex items-center">
                           <Checkbox id={`milestone-${index}`} checked={milestone.completed} />
@@ -1692,7 +1712,7 @@ export default function FundiDashboardPage() {
                 <Label htmlFor="profile-skills">Skills</Label>
                 <div className="border rounded-lg p-3">
                   <div className="flex flex-wrap gap-2 mb-2">
-                    {["Plumbing", "Pipe Fitting", "Fixture Installation", "Leak Detection", "Water Heaters", "Drainage"].map((skill, i) => (
+                    {["Plumbing", "Pipe Fitting", "Fixture Installation", "Leak Detection", "Water Heaters", "Drainage"].map((skill: string, i: number) => (
                       <Badge key={i} variant="secondary" className="flex items-center gap-1">
                         {skill}
                         <Button variant="ghost" size="icon" className="h-4 w-4 p-0 ml-1">
