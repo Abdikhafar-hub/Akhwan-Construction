@@ -1,3 +1,5 @@
+"use client"
+
 import { Users, Hammer, Briefcase, Building2, ShoppingBag, DollarSign, AlertTriangle } from "lucide-react"
 import { StatsCard } from "@/components/dashboard/stats-card"
 import { ActivityItem } from "@/components/dashboard/activity-item"
