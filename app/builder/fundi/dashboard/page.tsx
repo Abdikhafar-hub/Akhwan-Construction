@@ -937,101 +937,102 @@ export default function FundiDashboardPage() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Verification Status</CardTitle>
-                  <CardDescription>ID documents and certifications</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="grid gap-4 md:grid-cols-2">
-                      <div className="p-4 border rounded-lg">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-medium">ID Verification</h3>
-                          <Badge variant="default">Verified</Badge>
+                    <CardDescription>ID documents and certifications</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="grid gap-4 md:grid-cols-2">
+                        <div className="p-4 border rounded-lg">
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className="font-medium">ID Verification</h3>
+                            <Badge variant="default">Verified</Badge>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <FileCheck className="h-4 w-4 mr-2 text-green-500" />
+                            <span>National ID verified on March 15, 2025</span>
+                          </div>
                         </div>
-                        <div className="flex items-center text-sm">
-                          <FileCheck className="h-4 w-4 mr-2 text-green-500" />
-                          <span>National ID verified on March 15, 2025</span>
+
+                        <div className="p-4 border rounded-lg">
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className="font-medium">Phone Verification</h3>
+                            <Badge variant="default">Verified</Badge>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <FileCheck className="h-4 w-4 mr-2 text-green-500" />
+                            <span>Phone number verified on March 15, 2025</span>
+                          </div>
+                        </div>
+
+                        <div className="p-4 border rounded-lg">
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className="font-medium">Plumbing Certification</h3>
+                            <Badge variant="default">Verified</Badge>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <FileCheck className="h-4 w-4 mr-2 text-green-500" />
+                            <span>Certificate verified on March 18, 2025</span>
+                          </div>
+                        </div>
+
+                        <div className="p-4 border rounded-lg">
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className="font-medium">Background Check</h3>
+                            <Badge variant="secondary">In Progress</Badge>
+                          </div>
+                          <div className="flex items-center text-sm">
+                            <Clock className="h-4 w-4 mr-2 text-amber-500" />
+                            <span>Submitted on April 5, 2025 (Est. 3 days)</span>
+                          </div>
                         </div>
                       </div>
 
                       <div className="p-4 border rounded-lg">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-medium">Phone Verification</h3>
-                          <Badge variant="default">Verified</Badge>
-                        </div>
-                        <div className="flex items-center text-sm">
-                          <FileCheck className="h-4 w-4 mr-2 text-green-500" />
-                          <span>Phone number verified on March 15, 2025</span>
+                        <h3 className="font-medium mb-3">Upload Additional Credentials</h3>
+                        <p className="text-sm text-muted-foreground mb-3">
+                          Add more certifications to enhance your profile and increase job opportunities.
+                        </p>
+                        <div className="flex space-x-2">
+                          <Button 
+                            variant="outline"
+                            onClick={() => setAddCertificationOpen(true)}
+                          >
+                            <Plus className="h-4 w-4 mr-2" /> Add Certification
+                          </Button>
+                          <Button 
+                            variant="outline"
+                            onClick={() => setAddLicenseOpen(true)}
+                          >
+                            <Plus className="h-4 w-4 mr-2" /> Add License
+                          </Button>
                         </div>
                       </div>
 
-                      <div className="p-4 border rounded-lg">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-medium">Plumbing Certification</h3>
-                          <Badge variant="default">Verified</Badge>
+                      <div className="p-4 bg-muted/50 rounded-lg">
+                        <div className="flex items-center mb-3">
+                          <Star className="h-5 w-5 text-yellow-400 fill-yellow-400 mr-2" />
+                          <h3 className="font-medium">Verification Benefits</h3>
                         </div>
-                        <div className="flex items-center text-sm">
-                          <FileCheck className="h-4 w-4 mr-2 text-green-500" />
-                          <span>Certificate verified on March 18, 2025</span>
-                        </div>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex items-start">
+                            <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
+                            <span>Verified profiles receive 3x more job opportunities</span>
+                          </li>
+                          <li className="flex items-start">
+                            <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
+                            <span>Higher ranking in search results</span>
+                          </li>
+                          <li className="flex items-start">
+                            <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
+                            <span>Access to premium jobs with higher budgets</span>
+                          </li>
+                          <li className="flex items-start">
+                            <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
+                            <span>Eligible for instant payouts</span>
+                          </li>
+                        </ul>
                       </div>
-
-                      <div className="p-4 border rounded-lg">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-medium">Background Check</h3>
-                          <Badge variant="secondary">In Progress</Badge>
-                        </div>
-                        <div className="flex items-center text-sm">
-                          <Clock className="h-4 w-4 mr-2 text-amber-500" />
-                          <span>Submitted on April 5, 2025 (Est. 3 days)</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="p-4 border rounded-lg">
-                      <h3 className="font-medium mb-3">Upload Additional Credentials</h3>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Add more certifications to enhance your profile and increase job opportunities.
-                      </p>
-                      <div className="flex space-x-2">
-                        <Button 
-                          variant="outline"
-                          onClick={() => setAddCertificationOpen(true)}
-                        >
-                          <Plus className="h-4 w-4 mr-2" /> Add Certification
-                        </Button>
-                        <Button 
-                          variant="outline"
-                          onClick={() => setAddLicenseOpen(true)}
-                        >
-                          <Plus className="h-4 w-4 mr-2" /> Add License
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="p-4 bg-muted/50 rounded-lg">
-                      <div className="flex items-center mb-3">
-                        <Star className="h-5 w-5 text-yellow-400 fill-yellow-400 mr-2" />
-                        <h3 className="font-medium">Verification Benefits</h3>
-                      </div>
-                      <ul className="space-y-2 text-sm">
-                        <li className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
-                          <span>Verified profiles receive 3x more job opportunities</span>
-                        </li>
-                        <li className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
-                          <span>Higher ranking in search results</span>
-                        </li>
-                        <li className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
-                          <span>Access to premium jobs with higher budgets</span>
-                        </li>
-                        <li className="flex items-start">
-                          <CheckCircle className="h-4 w-4 mr-2 text-green-500 mt-0.5" />
-                          <span>Eligible for instant payouts</span>
-                        </li>
-                      </ul>
-                    </div>
+                    </div> {/* <-- Add this closing tag before the end of CardContent */}
                   </CardContent>
                 </Card>
 
@@ -1105,7 +1106,7 @@ export default function FundiDashboardPage() {
                   </CardContent>
                 </Card>
               </div>
-            </div>
+            </div> {/* <-- Add this closing tag here */}
           </TabsContent>
         </Tabs>
       </div>
